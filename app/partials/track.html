@@ -1,0 +1,63 @@
+<div class="panel panel-default tracker-panel">
+  <div class="panel-body">
+    <div class="row">
+      <div ng-if="settings.target">
+        <div class="col-md-6">
+          <div class="target-image-container">
+            <span></span>
+            <img class="target-image" src="http://pokemon.night.coffee/icons/shiny/{{ settings.target_filename() }}" alt="{{ settings.target }}" title="{{ settings.target }}" />
+          </div>
+        </div>
+      </div>
+      <div ng-class="{{_(settings.target).isEmpty() ? 'col-md-12' : 'col-md-6'}}">
+        <div class="shinycount"><span ng-click="editEncounters()">{{ settings.encounters | number }}</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="row tracker">
+    <div class="col-md-12">
+      <div class="btn-group btn-group-justified" role="group">
+        <a class="btn btn-danger" ui-sref="shiny.track" role="button" ng-click="decEncounters()">
+          <span class="glyphicon glyphicon-minus"></span>
+        </a>
+        <a class="btn btn-success" ui-sref="shiny.track" role="button" ng-click="incEncounters()">
+          <span class="glyphicon glyphicon-plus"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div ng-if="settings.show_stats">
+    <div class="row stats" ng-if="settings.start_date">
+      <div class="col-md-12">
+        <div class="input-group">
+          <span class="input-group-addon" id="start_date-addon">Start</span>
+          <input type="text" class="form-control" id="start_date" aria-describedby="start_date-addon" readonly="readonly" value="{{ settings.start_date | amTimeAgo }}" />
+        </div>
+      </div>
+    </div>
+    <div class="row stats">
+      <div class="col-md-12">
+        <div class="input-group">
+          <span class="input-group-addon" id="probability-addon">Probability</span>
+          <input type="text" class="form-control" id="probability" aria-describedby="probability-addon" readonly="readonly" value="{{ settings.odds().toFraction() }}" />
+        </div>
+      </div>
+    </div>
+    <div class="row stats">
+      <div class="col-md-12">
+        <div class="input-group">
+          <span class="input-group-addon" id="binomial-addon">B(n,p)</span>
+          <input type="text" class="form-control" id="binomial" aria-describedby="binomial-addon" readonly="readonly" value="{{ '%2.2f%%' | s: 'sprintf': [settings.binomial_distribution_percentage()] }}" />
+        </div>
+      </div>
+    </div>
+    <div class="row stats">
+      <div class="col-md-12">
+        <div class="input-group">
+          <span class="input-group-addon" id="remaining-addon">Until 90%</span>
+          <input type="text" class="form-control" id="remaining" aria-describedby="remaining-addon" readonly="readonly" value="{{ settings.remaining_encounters() | number }}" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

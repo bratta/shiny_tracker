@@ -1,0 +1,34 @@
+<nav class="navbar navbar-inverse navbar-static-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">
+        <span><img src="/images/pokeball.png" /></span>
+        Shiny Tracker
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid tracker-container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" ng-class="{active: getActiveTab() === 'track'}">
+          <a ui-sref="shiny.track" aria-controls="track" role="tab" data-toggle="tab">Track</a>
+        </li>
+        <li role="presentation" ng-class="{active: getActiveTab() === 'setup'}">
+          <a ui-sref="shiny.setup" aria-controls="setup" role="tab" data-toggle="tab">Setup</a>
+        </li>
+        <li role="presentation" ng-class="{active: getActiveTab() === 'about'}" class="pull-right">
+          <a ui-sref="shiny.about" aria-controls="about" role="tab" data-toggle="tab">About</a>
+        </li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <ui-view></ui-view>
+      </div>
+    </div>
+  </div>
+</div>

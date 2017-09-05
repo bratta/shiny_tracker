@@ -1,0 +1,73 @@
+body {
+  background: #fff url("/images/cream_pixels.png");
+}
+.tracker-container {
+  max-width: 640px;
+}
+.navbar {
+  height: 75px;
+}
+.panel {
+  border-top: 0px;
+  h3 {
+    font-size: 1.5em;
+    margin-top: 20px;
+  }
+}
+.reset-block {
+  margin-top: 25px;
+}
+.shinywrapper {
+  display: block;
+  overflow: hidden;
+}
+.shinycount {
+  width: 100%;
+  padding: 1em 0;
+  text-align: center;
+  border: 0px;
+  margin: 0;
+  font-size: 3em;
+  font-weight: bold;
+}
+.tracker-panel {
+  margin: 0px;
+  padding: 1px;
+}
+.tracker {
+  margin-bottom: 25px;
+}
+.target-image-container {
+  float: left;
+  display: block;
+  height: 144px;
+  width: 125px;
+  text-align: center;
+  span {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+  .target-image {
+    display: inline-block;
+    margin: auto;
+    padding: 0px;
+    max-width: 110px;
+    min-width: 75px;
+    vertical-align: middle;
+  }
+}
+.stats {
+  margin-top: 5px;
+  .input-group {
+    width: 100%;
+    .input-group-addon {
+      background-color: #337ab7;
+      color: #fff;
+      width: 120px;
+    }
+    .form-control[readonly] {
+      background-color: #fff;
+    }
+  }
+}
