@@ -10,6 +10,8 @@
 
 module.exports = function (grunt) {
 
+  grunt.loadNpmTasks('grunt-contrib-imagemin');
+
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
@@ -242,7 +244,6 @@ module.exports = function (grunt) {
         src: [
           '<%= yeoman.dist %>/scripts/{,*/}*.js',
           '<%= yeoman.dist %>/styles/{,*/}*.css',
-          '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
           '<%= yeoman.dist %>/styles/fonts/*'
         ]
       }
@@ -317,11 +318,11 @@ module.exports = function (grunt) {
     // },
 
     imagemin: {
-      dist: {
+      dynamic: {
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/images',
-          src: '[*/*.{png,jpg,jpeg,gif}]',
+          src: '[**/*.{png,jpg,jpeg,gif}]',
           dest: '<%= yeoman.dist %>/images'
         }]
       }
@@ -394,7 +395,7 @@ module.exports = function (grunt) {
             '.htaccess',
             '*.html',
             '*.json',
-            'images/{,*/}*.{webp}',
+            'images/{,*/}*.{webp,png,gif,jpeg,jpg}',
             'styles/fonts/{,*/}*.*'
           ]
         }, {
