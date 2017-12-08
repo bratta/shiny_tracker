@@ -103,11 +103,13 @@
 
         </div>
       </div>
+
       <div class="row">
         <div class="col-md-12">
           <h3>Show stats on the tracker?</h3>
         </div>
       </div>
+
       <div class="row">
         <div class="col-md-12">
           <div class="btn-group">
@@ -117,17 +119,37 @@
             <label class="btn btn-default" ng-class="{active: settings.show_stats === false}">
               <input type="radio" name="show_stats" class="hide" ng-value="false" ng-model="settings.show_stats" /> No
             </label>
+            </div>
+          </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Dark Theme</h3>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="btn-group">
+            <label class="btn btn-default" ng-class="{active: settings.dark_theme === true}" ng-click="setActiveStylesheet()">
+              <input type="radio" name="dark_theme" class="hide" ng-value="true" ng-model="settings.dark_theme " /> On
+            </label>
+            <label class="btn btn-default" ng-class="{active: settings.dark_theme === false}" ng-click="setActiveStylesheet()">
+              <input type="radio" name="dark_theme" class="hide" ng-value="false" ng-model="settings.dark_theme" /> Off
+            </label>
+          </div>
+        </div>
+      </div>
+
       <div class="row reset-block">
         <div class="col-md-12 text-center">
-          <a class="btn btn-danger" href="#" role="button" ng-click="resetSettings()">
+          <a class="btn btn-danger" href="#" role="button" ng-click="resetSettings(); setActiveStylesheet();">
             <span class="glyphicon glyphicon-retweet"></span>
             Reset
           </a>
         </div>
       </div>
-
     </form>
   </div>
 </div>
