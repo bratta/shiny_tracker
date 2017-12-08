@@ -53,4 +53,27 @@ angular
               activeTab: "about"
             }
           });
+  }]).run(['$rootScope', '$state', '$stateParams', '$cookies', 'Settings', function ($rootScope, $state, $stateParams, $cookies, Settings) {
+    $rootScope.settings = new Settings($cookies.getObject("settings"));
+    $rootScope.$watch('settings', function() {
+      $cookies.putObject("settings", $rootScope.settings, { expires: moment().add(1, 'year').toDate() });
+    }, true);
+
+    $rootScope.setActiveStylesheet = function() {
+      var links = angular.element(document).find("link");
+      if (links) {
+        links.each(function (i, link) {
+          var stylesheetLink = angular.element(link);
+          if (stylesheetLink.prop("rel").indexOf("style") != -1 &&
+              stylesheetLink.prop("href").includes("shinytrack-dark")) {
+            if ($rootScope.settings.dark_theme) {
+              stylesheetLink.prop("disabled", false);
+            } else {
+              stylesheetLink.prop("disabled", true);
+            }
+          }
+        });
+      }
+    };
+    $rootScope.setActiveStylesheet();
   }]);

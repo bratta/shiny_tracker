@@ -7,6 +7,7 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
+
 module.exports = function (grunt) {
 
   // Time how long tasks take. Can help when optimizing build times
@@ -15,8 +16,7 @@ module.exports = function (grunt) {
   // Automatically load required Grunt tasks
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin',
-    ngtemplates: 'grunt-angular-templates',
-    cdnify: 'grunt-google-cdn'
+    ngtemplates: 'grunt-angular-templates'
   });
 
   // Configurable paths for the application
@@ -292,8 +292,14 @@ module.exports = function (grunt) {
     //   dist: {
     //     files: {
     //       '<%= yeoman.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css'
-    //       ]
+    //         '.tmp/styles/main.css',
+    //         '.tmp/bower_components/angular-bootstrap/ui-bootstrap-csp.css',
+    //         '.tmp/styles/datetimepicker.css',
+    //         '.tmp/styles/shinytrack.css'
+    //       ],
+    //       '<%= yeoman.dist %>/styles/shinytrack-dark.css': [
+    //         '.tmp/styles/shinytrack-dark.css'
+    //       ],
     //     }
     //   }
     // },
@@ -315,7 +321,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/images',
-          src: '{,*/}*.{png,jpg,jpeg,gif}',
+          src: '[*/*.{png,jpg,jpeg,gif}]',
           dest: '<%= yeoman.dist %>/images'
         }]
       }
@@ -372,13 +378,6 @@ module.exports = function (grunt) {
           src: '*.js',
           dest: '.tmp/concat/scripts'
         }]
-      }
-    },
-
-    // Replace Google CDN references
-    cdnify: {
-      dist: {
-        html: ['<%= yeoman.dist %>/*.html']
       }
     },
 
@@ -482,7 +481,6 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
-    'cdnify',
     'cssmin',
     'uglify',
     'filerev',

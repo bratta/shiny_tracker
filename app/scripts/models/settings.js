@@ -19,7 +19,7 @@ angular.module("shinytrack")
     Settings.prototype.init = function(params) {
       if (_(params).isEmpty()) {
         params = {
-          generation: 7, shiny_charm: false, encounters: 0, encounter_method: "random", target: "", start_date: new Date(), show_stats: true
+          generation: 7, shiny_charm: false, encounters: 0, encounter_method: "random", target: "", start_date: new Date(), show_stats: true, dark_theme: false
         };
       }
       this.generation = params.generation;
@@ -29,6 +29,7 @@ angular.module("shinytrack")
       this.target = params.target;
       this.start_date = new Date(params.start_date);
       this.show_stats = params.show_stats;
+      this.dark_theme = params.dark_theme;
     };
 
     Settings.prototype.reset = function() {

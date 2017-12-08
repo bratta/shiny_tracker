@@ -1,0 +1,54 @@
+body {
+  background: #333 !important;
+}
+.panel, .modal-content {
+  border: 1px solid #222 !important;
+  background-color: #222 !important;
+  color: #eee;
+}
+.modal-content, .modal-content input, .modal-content .btn-cancel {
+  border: 1px solid #222 !important;
+  background-color: #222 !important;
+  color: #eee;
+
+}
+.tracker-panel {
+  background-color: #222 !important;
+  color: #eee;
+}
+.input-group {
+  input, .input-group-addon {
+    border: 1px solid #222 !important;
+  }
+}
+ul.nav {
+  color: #eee;
+  border-bottom: 1px solid #222 !important;
+  li a {
+      color: #eee;
+  }
+  li a:hover {
+      border: 1px solid #222 !important;
+      border-bottom: 0px;
+      background-color: #222 !important;
+      color: #eee;
+  }
+  li.active a {
+      border: 1px solid #222 !important;
+      border-bottom: 0px;
+      background-color: #222 !important;
+      color: #eee;
+  }
+}
+.stats {
+  .input-group {
+    .input-group-addon {
+      background-color: #337ab7;
+      color: #eee !important;
+    }
+    .form-control[readonly] {
+      background-color: #333 !important;
+      color: #eee !important;
+    }
+  }
+}
