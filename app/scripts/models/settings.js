@@ -19,7 +19,7 @@ angular.module("shinytrack")
     Settings.prototype.init = function(params) {
       if (_(params).isEmpty()) {
         params = {
-          generation: 7, shiny_charm: false, encounters: 0, encounter_method: "random", target: "", start_date: new Date(), show_stats: true, dark_theme: false
+          generation: 8, shiny_charm: false, encounters: 0, encounter_method: "random", target: "", start_date: new Date(), show_stats: true, dark_theme: false
         };
       }
       this.generation = params.generation;
@@ -62,7 +62,7 @@ angular.module("shinytrack")
             odds = 1365;
           }
         }
-        if (this.generation === 6 || this.generation === 7) {
+        if (this.generation === 6 || this.generation === 7 || this.generation === 8) {
           if (this.shiny_charm === true) {
             odds = 512;
           } else {
@@ -119,6 +119,21 @@ angular.module("shinytrack")
           }
         }
       }
+
+      // Generation 8 has static odd increases based on encounters
+      if (this.encounter_method === "random" && this.generation === 8) {
+        if (this.encounters <= 50) {
+          odds = (this.shiny_charm == true) ? 1024 : 2048;
+        } else if (this.encounters <= 100 && this.encounters > 50) {
+          odds = (this.shiny_charm == true) ? 819.2 : 1365.333;
+        } else if (this.encounters <= 200 && this.encounters > 100) {
+          odds = (this.shiny_charm == true) ? 682.6667 : 1024;
+        } else if (this.encounters <= 300 && this.encounters > 200) {
+          odds = (this.shiny_charm == true) ? 585.1429 : 819.2;
+        } else if (this.encounters <= 500 && this.encounters > 300) {
+          odds = (this.shiny_charm == true) ? 512 : 682.6667;
+        }
+      }
       return new Fraction(1, Math.ceil(odds));
     };
 
@@ -136,14 +151,37 @@ angular.module("shinytrack")
     };
 
     Settings.prototype.target_filename = function() {
-      var target_filename = (this.target || "").toLowerCase().replace(/[^-0-9a-zA-Z_\s]/g, '');
+      var target_filename = (this.target || "").toLowerCase().replace(/[^-0-9a-zA-Z_]/g, '');
       var alolan_forms = [ "raticate", "raichu", "vulpix", "sandslash", "sandshrew", "rattata", "persian", "ninetales", "muk", "meowth", "marowak", "grimer", "graveler", "golem", "geodude", "exeggutor", "dugtrio", "diglett" ];
+      var galarian_forms = [ "zigzagoon", "weezing", "ponyta", "rapidash", "farfetchd", "mrmime", "yamask", "corsola", "darumaka", "darmanitan", "meowth", "stunfisk" ];
+      var galarian_pokemon = [
+        "grookey", "thwackey", "rillaboom", "scorbunny", "raboot", "cinderace", "sobble", "drizzile", "inteleon", "blipbug",
+        "dottler", "orbeetle", "rookidee", "corvisquire", "corviknight", "skwovet", "greedent", "nickit", "thievul",
+        "obstagoon", "wooloo", "dubwool", "chewtle", "drednaw", "yamper", "boltund", "gossifleur", "eldegoss", "sizzlipede",
+        "centiskorch", "rolycoly", "carkol", "coalossal", "arrokuda", "barraskewda", "perrserker", "milcery", "alcremie",
+        "applin", "flapple", "appletun", "sirfetchd", "cursola", "impidimp", "morgrem", "grimmsnarl", "hatenna",
+        "hattrem", "hatterene", "cufant", "copperajah", "cramorant", "toxel", "toxtricity", "silicobra", "sandaconda",
+        "runerigus", "sinistea", "polteageist", "indeedee", "morpeko", "falinks", "snom", "frosmoth", "clobbopus", "grapploct",
+        "pincurchin", "mrrime", "stonjourner", "eiscue", "duraludon", "dracozolt", "arctozolt", "dracovish", "arctovish",
+        "dreepy", "drakloak", "dragapult", "zacian", "zamazenta", "eternatus"
+      ];
       if (this.generation === 7) {
         if (_(alolan_forms).contains(target_filename)) {
           target_filename = target_filename + "-alola";
         }
       }
-      target_filename = target_filename + ".gif";
+
+      // FIXME: Currently we only have .png files for
+      // the Galarian Pokemon. Fix this when we have proper gifs
+      if (_(galarian_forms.concat(galarian_pokemon)).contains(target_filename)) {
+        if (_(galarian_forms).contains(target_filename)) {
+          target_filename = target_filename + "-galar";
+        }
+        target_filename = target_filename + ".png";
+      } else {
+        target_filename = target_filename + ".gif";
+      }
+
       return target_filename;
     };
 

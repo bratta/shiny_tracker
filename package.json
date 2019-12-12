@@ -2,6 +2,7 @@
   "name": "shinytracker",
   "private": true,
   "devDependencies": {
+    "compass": "^0.1.1",
     "grunt": "^0.4.5",
     "grunt-angular-templates": "^0.5.9",
     "grunt-autoprefixer": "^2.0.0",
@@ -13,7 +14,7 @@
     "grunt-contrib-copy": "^0.7.0",
     "grunt-contrib-cssmin": "^0.12.0",
     "grunt-contrib-htmlmin": "^0.4.0",
-    "grunt-contrib-imagemin": "^0.9.4",
+    "grunt-contrib-imagemin": "^3.1.0",
     "grunt-contrib-jshint": "^0.11.0",
     "grunt-contrib-uglify": "^0.7.0",
     "grunt-contrib-watch": "^0.6.1",
@@ -25,6 +26,8 @@
     "grunt-svgmin": "^2.0.0",
     "grunt-usemin": "^3.0.0",
     "grunt-wiredep": "^2.0.0",
+    "gulp": "^4.0.2",
+    "imagemin": "^7.0.1",
     "jit-grunt": "^0.9.1",
     "jshint-stylish": "^1.0.0",
     "karma-jasmine": "^1.1.1",
@@ -38,7 +41,6 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "compass": "^0.1.1",
     "google-cdn-data": "^0.1.25",
     "graceful-fs": "^4.1.11"
   }
